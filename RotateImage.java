@@ -2,15 +2,26 @@ import java.util.*;
 
 class RorateImage {
     public void rotate(int[][] matrix) {
-        int[][] d=matrix;
-        int n2=matrix[0].length-1;
-        for(int i=0; i<d.length; i++) {
-            int n1=matrix.length-1;
-            for(int j=0; i<d[i].length; j++) {
-                matrix[n1][n2]=d[i][j];
-                n1--;
+        // Transpose
+        for(int i=0; i<matrix.length; i++) {
+            for(int j=i+1; j<matrix.length; j++) {
+                int x=matrix[i][j];
+                int y=matrix[j][i];
+                matrix[i][j]=y;
+                matrix[j][i]=x;
             }
-            n2--;
+        }
+        // Switch
+        for(int i=0; i<matrix.length; i++) {
+            int l=0,r=matrix.length-1;
+            while(l<r) {
+                int x=matrix[i][l];
+                int y=matrix[i][r];
+                matrix[i][l]=y;
+                matrix[i][r]=x;
+                l++;
+                r--;
+            }
         }
     }
 }
